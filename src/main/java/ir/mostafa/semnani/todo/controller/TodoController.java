@@ -1,6 +1,6 @@
 package ir.mostafa.semnani.todo.controller;
 
-import ir.mostafa.semnani.todo.entity.Todo;
+import ir.mostafa.semnani.todo.dto.TodoDTO;
 import ir.mostafa.semnani.todo.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +14,12 @@ public class TodoController {
     private final TodoService todoService;
 
     @GetMapping
-    public List<Todo> findAll() {
+    public List<TodoDTO> findAll() {
         return todoService.findAll();
     }
 
     @PostMapping
-    public Todo save(@RequestBody Todo todo) {
-        return todoService.save(todo);
+    public TodoDTO save(@RequestBody TodoDTO todoDTO) {
+        return todoService.save(todoDTO);
     }
 }

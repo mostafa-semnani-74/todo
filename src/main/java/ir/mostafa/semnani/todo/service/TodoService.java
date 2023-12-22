@@ -1,10 +1,10 @@
 package ir.mostafa.semnani.todo.service;
 
-import ir.mostafa.semnani.todo.entity.Todo;
+import ir.mostafa.semnani.todo.dto.TodoDTO;
 
 import java.util.List;
 
 public interface TodoService {
-    Todo save(Todo todo);
-    List<Todo> findAll();
+    TodoDTO save(TodoDTO todoDTO);
+    List<TodoDTO> findAll();
 }
