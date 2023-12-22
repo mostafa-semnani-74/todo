@@ -22,7 +22,33 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
+    public TodoDTO update(TodoDTO todoDTO) {
+        Todo todo = findEntityById(todoDTO.id());
+
+        todo.setPriority(todoDTO.priority());
+        todo.setDescription(todoDTO.description());
+        todo.setDone(todoDTO.isDone());
+
+        return TodoMapper.toDTO(todoRepository.save(todo));
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        todoRepository.deleteById(id);
+    }
+
+    @Override
     public List<TodoDTO> findAll() {
         return TodoMapper.toDTOs(todoRepository.findAll());
+    }
+
+    @Override
+    public TodoDTO findById(Integer id) {
+        return TodoMapper.toDTO(findEntityById(id));
+    }
+
+    private Todo findEntityById(Integer id) {
+        return todoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("todo not found with id : " + id));
     }
 }
