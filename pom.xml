@@ -59,6 +59,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>todo.0.0.1</finalName>
 	</build>
 
 </project>
