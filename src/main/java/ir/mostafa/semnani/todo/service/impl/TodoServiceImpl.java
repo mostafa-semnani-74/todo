@@ -15,10 +15,12 @@ import java.util.List;
 public class TodoServiceImpl implements TodoService {
     private final TodoRepository todoRepository;
 
+    private final TodoMapper todoMapper;
+
     @Override
     public TodoDTO save(TodoDTO todoDTO) {
-        Todo savedTodo = todoRepository.save(TodoMapper.toEntity(todoDTO));
-        return TodoMapper.toDTO(savedTodo);
+        Todo savedTodo = todoRepository.save(todoMapper.toEntity(todoDTO));
+        return todoMapper.toDTO(savedTodo);
     }
 
     @Override
@@ -29,7 +31,7 @@ public class TodoServiceImpl implements TodoService {
         todo.setDescription(todoDTO.description());
         todo.setDone(todoDTO.isDone());
 
-        return TodoMapper.toDTO(todoRepository.save(todo));
+        return todoMapper.toDTO(todoRepository.save(todo));
     }
 
     @Override
@@ -39,12 +41,12 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public List<TodoDTO> findAll() {
-        return TodoMapper.toDTOs(todoRepository.findAll());
+        return todoMapper.toDTOs(todoRepository.findAll());
     }
 
     @Override
     public TodoDTO findById(Integer id) {
-        return TodoMapper.toDTO(findEntityById(id));
+        return todoMapper.toDTO(findEntityById(id));
     }
 
     private Todo findEntityById(Integer id) {
