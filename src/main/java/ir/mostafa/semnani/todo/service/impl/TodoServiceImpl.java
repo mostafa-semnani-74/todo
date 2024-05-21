@@ -7,11 +7,13 @@ import ir.mostafa.semnani.todo.repository.TodoRepository;
 import ir.mostafa.semnani.todo.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class TodoServiceImpl implements TodoService {
     private final TodoRepository todoRepository;
 
