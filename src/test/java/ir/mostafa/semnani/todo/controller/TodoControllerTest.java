@@ -58,8 +58,8 @@ public class TodoControllerTest {
     @Test
     void shouldGetAllTodos() {
         List<Todo> todos = List.of(
-                new Todo(null, 1, "my first todo", false),
-                new Todo(null, 2, "my second todo", true)
+                new Todo(null, 1, "my first todo", false, null),
+                new Todo(null, 2, "my second todo", true, null)
         );
         todoRepository.saveAll(todos);
 
