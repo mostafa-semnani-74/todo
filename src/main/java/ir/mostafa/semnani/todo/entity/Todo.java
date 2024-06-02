@@ -1,9 +1,6 @@
 package ir.mostafa.semnani.todo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -25,4 +22,7 @@ public class Todo {
 
     @Column
     private boolean isDone;
+
+    @Version
+    private Long version;
 }
