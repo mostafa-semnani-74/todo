@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "grpc.todo";
+
+message TodoRequest{
+  string msg = 1;
+}
+message TodoResponse {
+  string resMsg = 1;
+}
+
+service TodoService {
+  rpc getTodo(TodoRequest) returns (TodoResponse) {};
+}
