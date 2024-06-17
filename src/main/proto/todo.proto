@@ -3,13 +3,15 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "grpc.todo";
 
-message TodoRequest{
-  string msg = 1;
-}
-message TodoResponse {
-  string resMsg = 1;
+message Empty {}
+
+message Todo {
+  int32 id = 1;
+  int32 priority = 2;
+  string description = 3;
+  bool isDone = 4;
 }
 
 service TodoService {
-  rpc getTodo(TodoRequest) returns (TodoResponse) {};
+  rpc findAll(Empty) returns (stream Todo) {};
 }
