@@ -1,6 +1,7 @@
 package ir.mostafa.semnani.todo.grpc.service;
 
 import grpc.todo.Empty;
+import grpc.todo.SaveReq;
 import grpc.todo.Todo;
 import grpc.todo.TodoServiceGrpc;
 import io.grpc.stub.StreamObserver;
@@ -28,4 +29,25 @@ public class TodoGrpcService extends TodoServiceGrpc.TodoServiceImplBase {
         responseObserver.onCompleted();
     }
 
+    @Override
+    public void save(SaveReq request, StreamObserver<Todo> responseObserver) {
+        ir.mostafa.semnani.todo.entity.Todo todoEntity = ir.mostafa.semnani.todo.entity.Todo
+                .builder()
+                .priority(request.getPriority())
+                .description(request.getDescription())
+                .isDone(request.getIsDone())
+                .build();
+
+        todoRepository.save(todoEntity);
+
+        responseObserver.onNext(
+                Todo.newBuilder()
+                        .setId(todoEntity.getId())
+                        .setPriority(todoEntity.getPriority())
+                        .setDescription(todoEntity.getDescription())
+                        .setIsDone(todoEntity.isDone())
+                        .build());
+
+        responseObserver.onCompleted();
+    }
 }

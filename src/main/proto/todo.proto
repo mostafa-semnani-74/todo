@@ -12,6 +12,15 @@ message Todo {
   bool isDone = 4;
 }
 
+message SaveReq {
+  int32 priority = 1;
+  string description = 2;
+  bool isDone = 3;
+}
+
 service TodoService {
   rpc findAll(Empty) returns (stream Todo) {};
+
+  rpc save(SaveReq) returns (Todo) {};
+
 }
